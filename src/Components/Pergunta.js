@@ -51,12 +51,15 @@ function SecondStep(props){
 }
 function ThirdStep(props){
 
-    const {respondidas, setRespondidas} = props.ZapStatus;
+    const {respondidas, setRespondidas, listaRespostas, setListaRespostas} = props.ZapStatus;
 
     function finish(value){
         props.setStep(3);
         props.setChoice(value);
         setRespondidas(respondidas+1);
+
+        const newArr = [...listaRespostas, value];
+        setListaRespostas(newArr);
     }
 
     return (
@@ -89,6 +92,7 @@ const Base = styled.div`
     border-radius: 8px;
     color: #333;
     margin-bottom: 1rem;
+    box-shadow: 0px 4px 5px 0px #00000026;
     ${ props => {
         if(props.theme === 1) {
             return (

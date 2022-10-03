@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import ZapRecall from './App';
+import App from './Components/App';
 
 
 import { dados } from './dados';
@@ -10,6 +10,6 @@ import { dados } from './dados';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<ZapRecall dados={dados} />
+		<App dados={dados} />
 	</React.StrictMode>
 );
