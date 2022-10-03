@@ -39,7 +39,7 @@ function Inicio(props){
 function DeckList({dados, deckID}){
     return (
         <Select data-identifier="deck-selector" value={deckID.deckID} onChange={(e) => deckID.setDeckID(parseInt(e.target.value))}>
-            {dados.map(data => <option data-identifier="deck-option" value={data.ID}>{data.Deck}</option>)}
+            {dados.map((data, index) => <option data-identifier="deck-option" key={index} value={data.ID}>{data.Deck}</option>)}
         </Select>
     )
 }

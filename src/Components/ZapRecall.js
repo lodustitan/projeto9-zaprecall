@@ -19,6 +19,7 @@ function ZapRecall({dados, deckID, respondidas}){
             <HeaderBase>
 				{dados.filter(deckFilter)[0].Data.map((data, index)=>{
 					return <Pergunta 
+                                key={index}
                                 index={index+1} 
                                 pergunta={data.Question} 
                                 resposta={data.Answer} 
