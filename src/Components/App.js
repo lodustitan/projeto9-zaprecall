@@ -8,11 +8,14 @@ import Inicio from './Inicio';
 function App({dados}) {
 
 	const [tela, setTela] = React.useState(0); // 0-inicio / 1-zapRecall /
+    const [deckID, setDeckID] = React.useState(1);
+	const [respondidas, setRespondidas] = React.useState(0);
+	const [paraResponder, setParaResponder] = React.useState(0);
 
 	return (
 		<AppBase>
-			{tela===0 && <Inicio setTela={setTela} />}
-			{tela===1 && <ZapRecall setTela={setTela} dados={dados}/>}
+			{tela===0 && <Inicio setTela={setTela} dados={dados} deckID={{deckID, setDeckID}} respondidas={{paraResponder, setParaResponder}} />}
+			{tela===1 && <ZapRecall setTela={setTela} dados={dados} deckID={{deckID, setDeckID}} respondidas={{respondidas, setRespondidas, paraResponder}} />}
 		</AppBase>
 	);
 }

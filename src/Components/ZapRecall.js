@@ -5,25 +5,30 @@ import Pergunta from './Pergunta';
 
 import { BsXCircleFill, BsQuestionCircleFill, BsFillCheckCircleFill } from "react-icons/bs";
 
-function ZapRecall({dados}){
+function ZapRecall({dados, deckID, respondidas}){
 
-	const [respondidas, setRespondidas] = React.useState(0);
     const [listaRespostas, setListaRespostas] = React.useState([]);
+
+    function deckFilter(e){
+        if(e.ID === deckID.deckID) return true;
+        else return false;
+    }
 
     return(
         <>
             <HeaderBase>
-				{dados.map((data, index)=>{
+				{dados.filter(deckFilter)[0].Data.map((data, index)=>{
 					return <Pergunta 
                                 index={index+1} 
                                 pergunta={data.Question} 
                                 resposta={data.Answer} 
-                                respondidas={{respondidas, setRespondidas, listaRespostas, setListaRespostas}} 
+                                respondidas={{respondidas, listaRespostas, setListaRespostas}} 
                             />
 				})}
 			</HeaderBase>
 			<FooterBase>
-				<p>{respondidas}/{dados.length} CONCLUÍDOS</p>
+				<p>{respondidas.respondidas}/{(respondidas.paraResponder > 0 && respondidas.paraResponder < dados.filter(deckFilter)[0].Data.length)? respondidas.paraResponder: dados.filter(deckFilter)[0].Data.length} 
+                CONCLUÍDOS</p>
                 <div>
                     {listaRespostas.map((data,index) =>{
                         if(data===1){ return <BsXCircleFill style={{color: "#FF3030"}} /> }

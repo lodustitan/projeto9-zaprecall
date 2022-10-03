@@ -4,14 +4,43 @@ import styled from "styled-components";
 // Image
 import zaprecall_logo from "../Images/image 1.png"
 
-function Inicio({setTela}){
+function Inicio(props){
+
+    const [config, setConfig] = React.useState(0);
+    const [deckMetaValue, setDeckMetaValue] = React.useState(0);
+
+    function configurations(){
+        switch (config) {
+            case 0:
+                setConfig(1); break;
+            case 1:
+                setConfig(2); break;
+            case 2:
+                setConfig(3); 
+                props.setTela(1);
+                props.respondidas.setParaResponder(deckMetaValue)
+                break;
+            default: break;
+        }
+        
+    }
 
     return (
         <Base>
             <img src={zaprecall_logo} alt="sla" />
             <span>ZapRecall</span>
-            <Botao onClick={()=>setTela(1)}>Iniciar Recall!</Botao>
+            {config===0? <DeckList dados={props.dados} deckID={props.deckID} /> : 
+            <DeckMeta type="number" placeholder="Digite sua meta de zaps..." onChange={(e)=> setDeckMetaValue(parseInt(e.target.value))} />}
+            <Botao onClick={configurations}>Iniciar Recall!</Botao>
         </Base>
+    )
+}
+
+function DeckList({dados, deckID}){
+    return (
+        <Select value={deckID.deckID} onChange={(e) => deckID.setDeckID(parseInt(e.target.value))}>
+            {dados.map(data => <option value={data.ID}>{data.Deck}</option>)}
+        </Select>
     )
 }
 
@@ -54,6 +83,30 @@ const Botao = styled.div`
         text-align: start;
         margin-bottom: 1rem;
     }
+`;
+const Select = styled.select`
+    box-sizing: none;
+    display: flex;
+    width: 250px;
+    height: 2rem;
+    border-radius: 8px;
+    color: #D70900;
+    background-color: white;
+    margin-bottom: 1rem;
+    box-shadow: 0px 4px 5px 0px #00000026;
+    justify-content: center;
+`;
+const DeckMeta = styled.input`
+    box-sizing: none;
+    display: flex;
+    width: 250px;
+    height: 2rem;
+    border-radius: 8px;
+    color: #D70900;
+    background-color: white;
+    margin-bottom: 1rem;
+    box-shadow: 0px 4px 5px 0px #00000026;
+    justify-content: center; 
 `;
 
 export default Inicio;

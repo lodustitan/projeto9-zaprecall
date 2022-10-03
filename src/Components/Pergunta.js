@@ -51,13 +51,12 @@ function SecondStep(props){
 }
 function ThirdStep(props){
 
-    const {respondidas, setRespondidas, listaRespostas, setListaRespostas} = props.ZapStatus;
+    const {respondidas, listaRespostas, setListaRespostas} = props.ZapStatus;
 
     function finish(value){
         props.setStep(3);
         props.setChoice(value);
-        setRespondidas(respondidas+1);
-
+        if(value === 3) respondidas.setRespondidas(respondidas.respondidas+1);
         const newArr = [...listaRespostas, value];
         setListaRespostas(newArr);
     }
