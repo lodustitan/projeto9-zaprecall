@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Pergunta from './Components/Pergunta';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function ZapRecall({dados}) {
+
+	const [respondidas, setRespondidas] = React.useState(0);
+	// const [todasResp, setTodasResp] = React.useState(dados.length);
+
+	return (
+		<div className="App">
+			<header className="App-header">
+				{dados.map((data, index)=>{
+					return <Pergunta index={index+1} pergunta={data.Question} resposta={data.Answer} respondidas={{respondidas, setRespondidas}} />
+				})}
+			</header>
+			<footer>
+				<p>{respondidas}/{dados.length} CONCLUÍDOS</p>
+			</footer>
+		</div>
+	);
 }
 
-export default App;
+export default ZapRecall;
