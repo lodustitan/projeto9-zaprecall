@@ -30,16 +30,16 @@ function Inicio(props){
             <img src={zaprecall_logo} alt="sla" />
             <span>ZapRecall</span>
             {config===0? <DeckList dados={props.dados} deckID={props.deckID} /> : 
-            <DeckMeta type="number" placeholder="Digite sua meta de zaps..." onChange={(e)=> setDeckMetaValue(parseInt(e.target.value))} />}
-            <Botao onClick={configurations}>Iniciar Recall!</Botao>
+                        <DeckMeta data-identifier="goals-input" type="number" placeholder="Digite sua meta de zaps..." onChange={(e)=> setDeckMetaValue(parseInt(e.target.value))} />}
+            <Botao data-identifier="start-btn" onClick={configurations}>Iniciar Recall!</Botao>
         </Base>
     )
 }
 
 function DeckList({dados, deckID}){
     return (
-        <Select value={deckID.deckID} onChange={(e) => deckID.setDeckID(parseInt(e.target.value))}>
-            {dados.map(data => <option value={data.ID}>{data.Deck}</option>)}
+        <Select data-identifier="deck-selector" value={deckID.deckID} onChange={(e) => deckID.setDeckID(parseInt(e.target.value))}>
+            {dados.map(data => <option data-identifier="deck-option" value={data.ID}>{data.Deck}</option>)}
         </Select>
     )
 }
@@ -63,6 +63,7 @@ const Base = styled.div`
     }
 `;
 const Botao = styled.div`
+    cursor: pointer;
     box-sizing: none;
     display: flex;
     padding: 1rem;

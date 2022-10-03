@@ -27,7 +27,7 @@ function ZapRecall({dados, deckID, respondidas}){
 				})}
 			</HeaderBase>
 			<FooterBase>
-				<p>{respondidas.respondidas}/{(respondidas.paraResponder > 0 && respondidas.paraResponder < dados.filter(deckFilter)[0].Data.length)? respondidas.paraResponder: dados.filter(deckFilter)[0].Data.length} 
+				<p data-identifier="flashcard-counter">{respondidas.respondidas}/{(respondidas.paraResponder > 0 && respondidas.paraResponder < dados.filter(deckFilter)[0].Data.length)? respondidas.paraResponder: dados.filter(deckFilter)[0].Data.length} 
                 CONCLUÍDOS</p>
                 <div>
                     {listaRespostas.map((data,index) =>{

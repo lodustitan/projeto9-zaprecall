@@ -14,7 +14,7 @@ export default function Pergunta(props){
     const [ choice, setChoice ] = React.useState(1);
 
     return(
-        <Base theme={step}>
+        <Base theme={step} data-identifier="flashcard-index-item">
             {step===0 && <FirstStep text={"Pergunta "+props.index} setStep={setStep} />}
             {step===1 && <SecondStep text={props.pergunta} setStep={setStep} />}
             {step===2 && <ThirdStep text={props.resposta} setStep={setStep} setChoice={setChoice} ZapStatus={props.respondidas} />}
@@ -31,8 +31,8 @@ function FirstStep(props){
 
     return (
         <>
-            <span>{props.text}</span>
-            <FiPlay onClick={next} />
+            <span data-identifier="flashcard-show-btn">{props.text}</span>
+            <FiPlay data-identifier="flashcard" onClick={next} />
         </>
     )
 }
@@ -44,8 +44,8 @@ function SecondStep(props){
 
     return (
         <>
-            <p>{props.text}</p>
-            <IoReloadOutline onClick={next} />
+            <p data-identifier="flashcard-question">{props.text}</p>
+            <IoReloadOutline data-identifier="flashcard-index-item" onClick={next} />
         </>
     )
 }
@@ -63,11 +63,11 @@ function ThirdStep(props){
 
     return (
         <>
-            <p>{props.text}</p>
+            <p data-identifier="flashcard-answer">{props.text}</p>
             <DivZap>
-                <ButtonZap onClick={() => finish(1)} color="#FF3030">Não lembrei</ButtonZap>
-                <ButtonZap onClick={() => finish(2)} color="#FF922E">Quase não lembrei</ButtonZap>
-                <ButtonZap onClick={() => finish(3)} color="#2FBE34">Zap!</ButtonZap>
+                <ButtonZap data-identifier="forgot-btn" onClick={() => finish(1)} color="#FF3030">Não lembrei</ButtonZap>
+                <ButtonZap data-identifier="almost-forgot-btn" onClick={() => finish(2)} color="#FF922E">Quase não lembrei</ButtonZap>
+                <ButtonZap data-identifier="zap-btn" onClick={() => finish(3)} color="#2FBE34">Zap!</ButtonZap>
             </DivZap>
         </>
     )
@@ -75,10 +75,10 @@ function ThirdStep(props){
 function FourthStep(props){
     return (
         <ThirdBase status={props.status}>
-            <p>{props.text}</p>
-            {props.status===1 && <BsXCircleFill />}
-            {props.status===2 && <BsQuestionCircleFill />}
-            {props.status===3 && <BsFillCheckCircleFill />}
+            <p data-identifier="flashcard-index-item">{props.text}</p>
+            {props.status===1 && <BsXCircleFill data-identifier="flashcard-status" />}
+            {props.status===2 && <BsQuestionCircleFill data-identifier="flashcard-status" />}
+            {props.status===3 && <BsFillCheckCircleFill data-identifier="flashcard-status" />}
         </ThirdBase>
     )
 }
